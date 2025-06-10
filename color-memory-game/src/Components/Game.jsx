@@ -7,24 +7,44 @@ function Game({ onGameOver, score, setScore }) {
   const [sequence, setSequence] = useState([]);
   const [userInput, setUserInput] = useState([]);
   const [level, setLevel] = useState(1);
-  const [showing, setShowing] = useState(false);
+  const [currentHighlight, setCurrentHighlight] = useState('');
+  const [shouldPlay, setShouldPlay] = useState(false);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
     nextSequence();
   }, []);
 
+  useEffect(() => {
+    if (shouldPlay) {
+      playSequence();
+    }
+  }, [sequence, shouldPlay]);
+
   const nextSequence = () => {
     const nextColor = colors[Math.floor(Math.random() * 4)];
     const newSeq = [...sequence, nextColor];
     setSequence(newSeq);
     setUserInput([]);
-    setShowing(true);
-    setTimeout(() => setShowing(false), newSeq.length * 600);
+    setMessage('');
+    setShouldPlay(true);
+  };
+
+  const playSequence = () => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setCurrentHighlight(sequence[i]);
+      setTimeout(() => setCurrentHighlight(''), 400);
+      i++;
+      if (i >= sequence.length) {
+        clearInterval(interval);
+        setShouldPlay(false);
+      }
+    }, 800);
   };
 
   const handleColorClick = (color) => {
-    if (showing) return;
+    if (shouldPlay) return; // Block input while showing sequence
     const newInput = [...userInput, color];
     setUserInput(newInput);
     if (color !== sequence[newInput.length - 1]) {
@@ -48,7 +68,7 @@ function Game({ onGameOver, score, setScore }) {
         {colors.map((color) => (
           <button
             key={color}
-            className={`color-btn ${showing && sequence.includes(color) ? 'highlight' : ''} ${color}`}
+            className={`color-btn ${color} ${currentHighlight === color ? 'highlight' : ''}`}
             onClick={() => handleColorClick(color)}
           >
             {color}

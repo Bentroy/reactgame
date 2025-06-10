@@ -13,5 +13,3 @@ function GameOver({ score, onRestart, onHome }) {
 }
 
 export default GameOver;
-// GameOver component displays the final score and provides options to restart the game or return to the home screen
-// It receives 'score', 'onRestart', and 'onHome' as props
