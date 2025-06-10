@@ -1,0 +1,12 @@
+.game-over h1 {
+  font-size: 2em;
+}
+.game-over p {
+  font-size: 1.3em;
+  margin: 15px 0;
+}
+.game-over button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+}
