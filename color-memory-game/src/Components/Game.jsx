@@ -19,6 +19,7 @@ function Game({ onGameOver, score, setScore }) {
     if (shouldPlay) {
       playSequence();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sequence, shouldPlay]);
 
   const nextSequence = () => {
