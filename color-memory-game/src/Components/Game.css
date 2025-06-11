@@ -32,3 +32,28 @@
   font-size: 1.2em;
   margin-top: 15px;
 }
+.timer {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+.score {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+.restart-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  transition: background-color 0.3s;
+}
+.game{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
